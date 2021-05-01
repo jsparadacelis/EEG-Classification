@@ -1,4 +1,4 @@
-from eeg_exam import EEGexam
+from eeg.eeg_exam import EEGexam
 
 
 if __name__ == "__main__":

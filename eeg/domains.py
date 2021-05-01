@@ -35,12 +35,16 @@ class FreqDomain(Domain):
         if not sfreq:
             raise Exception("Sample frequency is mandatory")
 
+        f_values, channel_freq = self.sampling_data(sfreq)
+        plt.plot(f_values, channel_freq)
+        plt.show()
+        return
+
+    def sampling_data(self, sfreq=None):
+
         channel_freq = np.fft.fft(self.data)
         len_channel = len(channel_freq)
         k_array = [i for i in range(0, len_channel)]
         f_values = [((sfreq*i)/len_channel) for i in k_array]
-
         channel_freq = abs(channel_freq)
-        plt.plot(f_values, channel_freq)
-        plt.show()
-        return
+        return f_values, channel_freq
